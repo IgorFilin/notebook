@@ -7,10 +7,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { NoteModule } from './features/note/note.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
-import { TestComponent } from './features/test/test.component';
 
 @NgModule({
-  declarations: [AppComponent, TestComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     NoteModule,

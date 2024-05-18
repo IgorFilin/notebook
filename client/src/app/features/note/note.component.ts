@@ -3,8 +3,12 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'notebook-note',
   templateUrl: './note.component.html',
-  styleUrls: ['./note.component.scss']
+  styleUrls: ['./note.component.scss'],
 })
 export class NoteComponent {
+  titleValue: string = '';
 
+  setTitle(value: string) {
+    this.titleValue = value;
+  }
 }

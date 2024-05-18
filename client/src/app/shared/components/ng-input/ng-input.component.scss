@@ -1,0 +1,55 @@
+@import "colors.scss";
+
+.ng-customInputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  width: 500px;
+
+  input {
+    width: 100%;
+    padding: 20px;
+    font-size: 24px;
+    border: 1px solid $color-light-gray;
+    border-radius: 4px;
+    transition: 0.4s;
+    border: 1px solid $color-dark-gray;
+
+    &:focus {
+      outline: none;
+      border-color: $color-medium-gray;
+    }
+
+    &:hover {
+      transition: 0.4s;
+      background: $color-gray;
+    }
+
+    &.error {
+      border: 0.1px solid red;
+    }
+  }
+}
+
+.ng-customInput__label {
+  font-weight: bold;
+}
+
+.ng-customInput__error {
+  font-size: 14px;
+  width: max-content;
+  white-space: pre;
+  position: relative;
+  width: 100%;
+
+  .ng-customInput__errorText {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 380px;
+    top: -5px;
+    z-index: 2;
+    color: red;
+  }
+}

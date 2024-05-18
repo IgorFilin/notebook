@@ -1,3 +1,4 @@
 <div class="container ng-note">
-  <notebook-ng-input />
+  <notebook-ng-input (inputEmit)="setTitle($event)" />
 </div>
+<div>{{ titleValue }}</div>

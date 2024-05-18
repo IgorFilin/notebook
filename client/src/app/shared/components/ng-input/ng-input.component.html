@@ -1,1 +1,15 @@
-<p>ng-input works!</p>
+<div class="ng-customInputContainer">
+  <label class="ng-customInput__label">
+    {{ labelText }}
+  </label>
+  <input
+    [(ngModel)]="inputValue"
+    (ngModelChange)="onChangeInputHandler()"
+    class="ng-customInput"
+  />
+  <div class="ng-customInput__error">
+    <span class="ng-customInput__errorText">
+      {{ error }}
+    </span>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+@import "colors.scss";
+
+.ng-textareaContainer {
+  .ng-textarea {
+    width: 100%;
+    // max-width: 500px;
+    height: 250px;
+    background-color: $color-light-gray;
+    border: 0;
+    display: inline-block;
+    vertical-align: middle;
+    resize: none;
+    padding: 20px;
+    border-radius: 10px;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+}

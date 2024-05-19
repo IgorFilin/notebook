@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { NoteComponent } from './note/note.component';
+import { NoteCreatorComponent } from './note-creator/note-creator.component';
 import { NoteListComponent } from './note-list/note-list.component';
 
 @NgModule({
-  declarations: [NoteComponent, NoteListComponent],
+  declarations: [NoteCreatorComponent, NoteListComponent],
   imports: [CommonModule, SharedModule],
-  exports: [NoteComponent, NoteListComponent],
+  exports: [NoteCreatorComponent, NoteListComponent],
 })
 export class FeaturesModule {}

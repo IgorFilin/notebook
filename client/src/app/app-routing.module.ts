@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { NoteComponent } from './features/note/note.component';
+import { NoteCreatorComponent } from './features/note-creator/note-creator.component';
 
-const routes: Routes = [{ path: '', component: NoteComponent }];
+const routes: Routes = [{ path: '', component: NoteCreatorComponent }];
 
 @NgModule({
   declarations: [],

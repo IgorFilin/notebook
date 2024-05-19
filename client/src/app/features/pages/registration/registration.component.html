@@ -1,0 +1,54 @@
+<div class="ng-registration">
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="registrationForm"
+    class="ng-registrationForm"
+  >
+    <label for="name">Имя: </label>
+    <input
+      id="name"
+      formControlName="name"
+      class="ng-registrationForm__input"
+      type="text"
+      placeholder="Username"
+    />
+    <div
+      *ngIf="name!.invalid && (name!.dirty || name!.touched)"
+      class="ng-registrationForm__inputError"
+    >
+      Обязательное поле
+    </div>
+    <label for="email">Почта: </label>
+    <input
+      id="email"
+      formControlName="email"
+      class="ng-registrationForm__input"
+      type="email"
+      placeholder="Email"
+    />
+    <div
+      *ngIf="email!.invalid && (email!.dirty || email!.touched)"
+      class="ng-registrationForm__inputError"
+    >
+      <div *ngIf="email!.errors?.['required']">Обязательное поле</div>
+      <div *ngIf="email!.errors?.['email']">Неверный формат почты</div>
+    </div>
+    <label for="password">Пароль: </label>
+    <input
+      formControlName="password"
+      id="password"
+      class="ng-registrationForm__input"
+      type="password"
+      placeholder="Password"
+    />
+    <div
+      *ngIf="password!.invalid && (password!.dirty || password!.touched)"
+      class="ng-registrationForm__inputError"
+    >
+      <div *ngIf="password!.errors?.['minlength']">Пароль менее 6 символов</div>
+    </div>
+    <button [disabled]="registrationForm.invalid" type="submit">
+      Регистрация
+    </button>
+  </form>
+</div>

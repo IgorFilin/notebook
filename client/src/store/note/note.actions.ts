@@ -1,8 +1,5 @@
 import { createAction } from '@ngrx/store';
 
-// export const setDataRequest = createAction(
-//   '[Json Placeholder] Set Data',
-//   (payload) => payload
-// );
-
-export const setNotes = createAction('[Note] Set Data');
+export const getNotes = createAction('[Note] Get NoteList');
+export const setNotes = createAction('[Note] Set NoteList', (data) => data);
+export const createNote = createAction('[Note] Create Note', (data) => data);

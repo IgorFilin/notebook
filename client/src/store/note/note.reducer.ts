@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { setNotes } from './note.actions';
+import { getNotes, setNotes } from './note.actions';
 
 export interface NoteType {
   title: string;
@@ -8,10 +8,10 @@ export interface NoteType {
 }
 
 const notes: Array<NoteType> = [
-  { title: 'test', description: 'test2', date: 'test3' },
-  { title: 'test', description: 'test2', date: 'test3' },
-  { title: 'test', description: 'test2', date: 'test3' },
-  { title: 'test', description: 'test2', date: 'test3' },
+  // { title: 'test', description: 'test2', date: 'test3' },
+  // { title: 'test', description: 'test2', date: 'test3' },
+  // { title: 'test', description: 'test2', date: 'test3' },
+  // { title: 'test', description: 'test2', date: 'test3' },
 ];
 
 export const NotesReducer = createReducer(

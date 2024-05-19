@@ -3,7 +3,7 @@
 .ng-textareaContainer {
   .ng-textarea {
     width: 100%;
-    // max-width: 500px;
+    box-sizing: border-box;
     height: 250px;
     background-color: $color-light-gray;
     border: 0;

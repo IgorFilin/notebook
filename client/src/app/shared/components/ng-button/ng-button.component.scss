@@ -1,0 +1,32 @@
+@import "colors.scss";
+
+.ng-buttoContainer {
+  text-align: center;
+
+  .ng-button {
+    width: 200px;
+    height: 60px;
+    background-color: $color-info-light;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      background-color: $color-info-dark;
+      color: $color-black;
+      transform: scale(1.07);
+    }
+
+    &:active {
+      background-color: $color-dark-gray;
+      transform: scale(1.1);
+    }
+
+    &:focus {
+      box-shadow: 0 0 5px #4caf50;
+    }
+  }
+}

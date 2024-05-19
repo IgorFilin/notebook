@@ -2,19 +2,29 @@
 
 .ng-noteList {
   width: 100%;
+}
 
-  &__elem {
-    border-bottom: 1px solid $color-medium-gray;
-    padding: 20px;
-    width: 100%;
+.ng-noteList__elem {
+  border-bottom: 1px solid $color-medium-gray;
+  padding: 20px;
+  width: 100%;
+  transition: 0.5s;
+  max-width: 250px;
+
+  &:hover {
+    cursor: pointer;
+    background: $color-gray;
+    border-bottom: 1px solid $color-black;
     transition: 0.5s;
-    max-width: 250px;
+  }
+}
 
-    &:hover {
-      cursor: pointer;
-      background: $color-gray;
-      border-bottom: 1px solid $color-black;
-      transition: 0.5s;
-    }
+.ng-noteList__elemEmpty {
+  @extend .ng-noteList__elem;
+
+  &:hover {
+    cursor: not-allowed;
+    background: unset;
+    border-bottom: 1px solid $color-medium-gray;
   }
 }

@@ -1,16 +1,8 @@
 import { Component, inject } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { createNote, getNotes } from 'src/store/note/note.actions';
 
-interface ResultDataType {
-  title: string;
-  description: string;
-}
-
-interface ResponseDataValues {
-  inputData?: string;
-  textareaData?: string;
-}
 @Component({
   selector: 'notebook-note-creator',
   templateUrl: './note-creator.component.html',
@@ -18,21 +10,21 @@ interface ResponseDataValues {
 })
 export class NoteCreatorComponent {
   store = inject(Store);
+  noteCreatedForm = new FormGroup({
+    title: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+  });
 
-  resultDataValues: ResultDataType = {
-    title: '',
-    description: '',
-  };
-
-  onChangeTitleHandler(title: string) {
-    this.resultDataValues.title = title;
+  get title(): any {
+    return this.noteCreatedForm.get('title');
   }
 
-  onChangeDescriptionHandler(description: string) {
-    this.resultDataValues.description = description;
+  get description(): any {
+    return this.noteCreatedForm.get('description');
   }
 
-  onClickCreateNoteHandler() {
-    this.store.dispatch(createNote(this.resultDataValues));
+  onSubmit() {
+    this.store.dispatch(createNote(this.noteCreatedForm.value));
+    this.noteCreatedForm.reset();
   }
 }

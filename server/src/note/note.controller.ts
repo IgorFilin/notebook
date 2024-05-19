@@ -19,8 +19,15 @@ export class NoteController {
 
   @Post("createNote")
   @UsePipes(new ValidationPipe())
-  async create(@Body() createNoteDto: CreateNoteDto, @Res() res: Response) {
-    const result: any = await this.noteService.createNote(createNoteDto);
+  async create(
+    @Body() createNoteDto: CreateNoteDto,
+    @Res() res: Response,
+    @Req() req: Request
+  ) {
+    const result: any = await this.noteService.createNote(
+      createNoteDto,
+      req.cookies.authToken
+    );
     // if (result.isAcceptKey === false) {
     //   return res.send(result);
     // } else {

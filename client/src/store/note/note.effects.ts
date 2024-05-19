@@ -44,10 +44,14 @@ export class GetNotesEffect {
       ofType(createNote),
       exhaustMap((actionData) => {
         return this.http
-          .post(`${environment.apiBaseUrl}/note/createNote`, {
-            title: actionData.title,
-            description: actionData.description,
-          })
+          .post(
+            `${environment.apiBaseUrl}/note/createNote`,
+            {
+              title: actionData.title,
+              description: actionData.description,
+            },
+            { withCredentials: true }
+          )
           .pipe(
             map((data: any) => {
               return setNotes(data);

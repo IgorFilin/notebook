@@ -1,12 +1,52 @@
 <div class="ng-noteCreator">
-  <notebook-ng-input
+  <!-- <notebook-ng-input
     (inputEmit)="onChangeTitleHandler($event)"
   ></notebook-ng-input>
   <notebook-ng-textarea
     (textareaEmit)="onChangeDescriptionHandler($event)"
-  ></notebook-ng-textarea>
-  <notebook-ng-button
+  ></notebook-ng-textarea> -->
+  <!-- <notebook-ng-button
     buttonText="Создать запись"
     (clickEmit)="onClickCreateNoteHandler()"
-  ></notebook-ng-button>
+  ></notebook-ng-button> -->
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="noteCreatedForm"
+    class="ng-creator__confirmForm"
+  >
+    <label class="ng-creator__inputLabel" for="title"
+      >Введите заголовок записи:
+    </label>
+    <input
+      id="title"
+      formControlName="title"
+      class="ng-creator__input"
+      type="text"
+    />
+    <div
+      *ngIf="title!.invalid && (title!.dirty || title!.touched)"
+      class="ng-creator__inputError"
+    >
+      Обязательное поле
+    </div>
+    <label class="ng-creator__inputLabel" for="description"
+      >Введите заметку:
+    </label>
+    <textarea
+      id="description"
+      formControlName="description"
+      class="ng-creator__input"
+    ></textarea>
+    <div
+      *ngIf="
+        description!.invalid && (description!.dirty || description!.touched)
+      "
+      class="ng-creator__inputError"
+    >
+      Обязательное поле
+    </div>
+    <button [disabled]="noteCreatedForm.invalid" type="submit">
+      Создать запись
+    </button>
+  </form>
 </div>

@@ -1,5 +1,74 @@
 .ng-noteCreator {
   display: flex;
-  flex-direction: column;
-  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  background: #f0f8ff;
+  min-height: 100vh;
+}
+
+.ng-creator__confirmForm {
+  width: 100%;
+  max-width: 1200px;
+  font-family: "Arial", sans-serif;
+}
+
+.ng-creator__inputLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.ng-creator__input {
+  width: 100%;
+  height: 500px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1.25rem;
+  resize: none;
+
+  &:focus {
+    border-color: #66afe9;
+    outline: none;
+    box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+  }
+}
+
+.ng-creator__inputError {
+  color: #d9534f;
+  margin-bottom: 1rem;
+}
+
+.ng-creator__input[type="text"] {
+  height: 50px;
+}
+
+.ng-creator__input[type="textarea"] {
+  height: 400px;
+  resize: none;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background: #007bff; /* Голубой цвет */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.25rem;
+  cursor: pointer;
+
+  &:hover {
+    background: #0056b3;
+  }
+
+  &:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
 }

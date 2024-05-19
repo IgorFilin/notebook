@@ -22,7 +22,7 @@ export class UsersService {
 
   blockedKeysSendingMails = {};
 
-  async create(createUserDto: CreateUserDto, userIP: string) {
+  async create(createUserDto: CreateUserDto) {
     try {
       const findUser = await this.UserTable.findOneBy({
         email: createUserDto.email,
@@ -34,21 +34,10 @@ export class UsersService {
         const hashedPassword = await bcrypt.hash(createUserDto.password, salt);
         const confirmRegKey = randomBytes(5).toString("hex");
 
-        const dirname = process.cwd();
-        const imagePath = path.join(
-          dirname,
-          "dist",
-          "static",
-          "image",
-          "default_photo_user.webp"
-        );
-
         const token = this.JwtService.sign({
           name: createUserDto.name,
           password: createUserDto.password,
         });
-
-        const ip = userIP.slice(7);
 
         // Создаем пользователя по сущности
         const user = new User();
@@ -58,7 +47,6 @@ export class UsersService {
         user.isAcceptKey = false;
         user.acceptKey = confirmRegKey;
         user.authToken = token;
-        user.ip = ip ? ip : "Скрыт";
 
         // Сохраняем в БД пользователя с регистрационным key
         this.UserTable.save(user);

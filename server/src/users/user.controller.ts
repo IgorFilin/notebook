@@ -27,7 +27,8 @@ export class UsersController {
     @Res() res: Response,
     @Ip() ip: string
   ) {
-    const result = await this.usersService.create(createUserDto, ip);
+    console.log(createUserDto);
+    const result = await this.usersService.create(createUserDto);
     if (result.isAcceptKey === false) {
       return res.send(result);
     } else {
@@ -86,18 +87,6 @@ export class UsersController {
       res.send({ isAcceptKey: result.isAcceptKey, message: result.message });
     } else {
       res.status(403).send({ message: result.message });
-    }
-  }
-
-  @Get("send_mail_confirm")
-  async sendMailConfirm(@Req() req: Request, @Res() res: Response) {
-    const email: any = req.query.email;
-    const result = await this.usersService.sendMainConfirm(email);
-    let statusCode: number;
-    if (result) {
-      if (!result.isBlocked) statusCode = 201;
-      else statusCode = 429;
-      res.status(statusCode).send(result);
     }
   }
 }

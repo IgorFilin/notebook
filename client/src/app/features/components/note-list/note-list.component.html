@@ -2,4 +2,7 @@
   <div class="ng-noteList__elem" *ngFor="let item of notes | async">
     <div>{{ item.title }}</div>
   </div>
+  <div class="ng-noteList__elem" *ngIf="!(notes | async).length">
+    Список заметок пуст
+  </div>
 </div>

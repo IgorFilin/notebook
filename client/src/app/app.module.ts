@@ -9,18 +9,27 @@ import { NotesReducer } from 'src/store/note/note.reducer';
 import { PagesModule } from './features/pages/pages.module';
 import { GetNotesEffect } from 'src/store/note/note.effects';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthEffect } from 'src/store/auth/auth.effects';
+import { AuthReducer } from 'src/store/auth/auth.reducer';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './features/components/header/header.component';
+import { AuthGuar } from './core/services/auth.guard';
+import { UtilsService } from './core/services/utils.service';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
     HttpClientModule,
     PagesModule,
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ notes: NotesReducer }),
-    EffectsModule.forRoot(GetNotesEffect),
+    StoreModule.forRoot({ notes: NotesReducer, auth: AuthReducer }),
+    EffectsModule.forRoot(GetNotesEffect, AuthEffect),
   ],
-  providers: [],
+  providers: [AuthGuar, UtilsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

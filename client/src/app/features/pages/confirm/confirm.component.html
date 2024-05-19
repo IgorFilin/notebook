@@ -1,0 +1,24 @@
+<div class="ng-confirm">
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="confirmForm"
+    class="ng-confirmForm"
+  >
+    <label for="key">Код подтверждения: </label>
+    <input
+      id="key"
+      formControlName="key"
+      class="ng-confirmForm__input"
+      type="text"
+    />
+    <div
+      *ngIf="key!.invalid && (key!.dirty || key!.touched)"
+      class="ng-confirmForm__inputError"
+    >
+      Обязательное поле
+    </div>
+    <button [disabled]="confirmForm.invalid" type="submit">
+      Подтвердить пароль
+    </button>
+  </form>
+</div>

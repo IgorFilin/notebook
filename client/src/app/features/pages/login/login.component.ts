@@ -1,18 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { startRegistrationAction } from 'src/store/auth/auth.actions';
+import { startLogin } from 'src/store/auth/auth.actions';
 
 @Component({
-  selector: 'notebook-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss'],
+  selector: 'notebook-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
-export class RegistrationComponent {
+export class LoginComponent {
   store = inject(Store);
 
-  registrationForm = new FormGroup({
-    name: new FormControl('', Validators.required),
+  loginForm = new FormGroup({
     email: new FormControl('', [
       Validators.required,
       Validators.pattern(
@@ -25,19 +24,15 @@ export class RegistrationComponent {
     ]),
   });
 
-  get name(): any {
-    return this.registrationForm.get('name');
-  }
-
   get email() {
-    return this.registrationForm.get('email');
+    return this.loginForm.get('email');
   }
 
   get password() {
-    return this.registrationForm.get('password');
+    return this.loginForm.get('password');
   }
 
   onSubmit() {
-    this.store.dispatch(startRegistrationAction(this.registrationForm.value));
+    this.store.dispatch(startLogin(this.loginForm.value));
   }
 }

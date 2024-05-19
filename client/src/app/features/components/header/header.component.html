@@ -1,0 +1,12 @@
+<div class="ng-headerContainer">
+  <div *ngIf="!(isAuth | async); else elseBlock">
+    <button routerLink="/registration" class="ng-header">Регистрация</button>
+    <button routerLink="/confirm" class="ng-header">
+      Подтверждение регистрации
+    </button>
+    <button routerLink="/login" class="ng-header">Вход</button>
+  </div>
+  <ng-template #elseBlock>
+    <button (click)="onClickLeaveHandler()" class="ng-header">Выход</button>
+  </ng-template>
+</div>

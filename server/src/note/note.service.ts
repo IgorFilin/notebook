@@ -19,11 +19,36 @@ export class NoteService {
   }
 
   async createNote(body: CreateNoteDto, token: string) {
-    const user = await this.UserTable.findOneBy({ authToken: token });
-    const note = new Note();
-    note.title = body.title;
-    note.description = body.description;
-    note.user = user;
-    this.NoteTable.save(note);
+    try {
+      const user = await this.UserTable.findOneBy({ authToken: token });
+
+      if (!user) {
+        return {
+          error: "User not found",
+          message: "Invalid authentication token",
+        };
+      }
+
+      const note = new Note();
+      note.title = body.title;
+      note.description = body.description;
+      note.user = user;
+      const savedNote = await this.NoteTable.save(note);
+
+      return {
+        note: {
+          id: savedNote.id,
+          title: savedNote.title,
+          description: savedNote.description,
+          date: savedNote.date,
+        },
+      };
+    } catch (e) {
+      console.error("Error creating note:", e);
+      return {
+        error: "Error creating note",
+        message: e.message,
+      };
+    }
   }
 }

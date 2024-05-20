@@ -28,11 +28,11 @@ export class NoteController {
       createNoteDto,
       req.cookies.authToken
     );
-    // if (result.isAcceptKey === false) {
-    //   return res.send(result);
-    // } else {
-    //   return res.status(403).send(result);
-    // }
+    if (result.note) {
+      return res.send(result);
+    } else {
+      return res.status(403).send(result);
+    }
   }
 
   @Get("getNotes")

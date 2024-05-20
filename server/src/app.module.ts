@@ -18,7 +18,8 @@ import { Note } from "./note/entities/note.entity";
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
-        type: "mysql",
+        // type: "mysql",
+        type: "postgres",
         host: configService.get("BD_HOST"),
         port: configService.get("BD_PORT"),
         username: configService.get("BD_USERNAME"),

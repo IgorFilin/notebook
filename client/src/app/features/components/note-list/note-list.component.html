@@ -1,6 +1,17 @@
 <div class="ng-noteList">
-  <div class="ng-noteList__elem" *ngFor="let item of notes | async">
-    <div>{{ item.title }}</div>
+  <div
+    class="ng-noteList__elem"
+    *ngFor="let item of notes | async"
+    (click)="openNote(item.id)"
+  >
+    <div class="ng-noteList__title">{{ item.title }}</div>
+    <div>{{ item.date | date : "dd/MM/yyyy" }}</div>
+    <div class="">
+      <notebook-ng-icon
+        [id]="'close-cross'"
+        (click)="deleteItem(item.id); $event.stopPropagation()"
+      ></notebook-ng-icon>
+    </div>
   </div>
   <div class="ng-noteList__elemEmpty" *ngIf="!(notes | async).length">
     Список заметок пуст

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { getNotes, setNotes } from './note.actions';
+import { getNotes, setNote, setNotes } from './note.actions';
 
 export interface NoteType {
   id: string;
@@ -12,9 +12,11 @@ const notes: Array<NoteType> = [];
 
 export const NotesReducer = createReducer(
   notes,
-  on(setNotes, (state, { note }) => {
+  on(setNote, (state, { note }) => {
     const asd = [...state, note];
-    console.log(asd);
     return [...state, note];
+  }),
+  on(setNotes, (state, { notes }) => {
+    return [...notes];
   })
 );

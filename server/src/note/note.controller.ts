@@ -38,5 +38,6 @@ export class NoteController {
   @Get("getNotes")
   async getNoteList(@Req() req: Request, @Res() res: Response) {
     const result = await this.noteService.getNotes(req.cookies.authToken);
+    return res.send(result);
   }
 }

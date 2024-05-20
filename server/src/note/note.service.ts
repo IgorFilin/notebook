@@ -14,8 +14,27 @@ export class NoteService {
     private NoteTable: Repository<Note>
   ) {}
 
-  async getNotes(params: any) {
-    console.log("попали");
+  async getNotes(token: string) {
+    const { notes } = await this.UserTable.findOne({
+      where: { authToken: token },
+      relations: ["notes"],
+    });
+
+    if (!notes) {
+      return {
+        error: "User not found",
+        message: "Invalid authentication token",
+      };
+    }
+
+    return {
+      notes: notes.map((note) => ({
+        id: note.id,
+        title: note.title,
+        description: note.description,
+        date: note.date,
+      })),
+    };
   }
 
   async createNote(body: CreateNoteDto, token: string) {

@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { getNotes } from 'src/store/note/note.actions';
 import { getDataNotes } from 'src/store/note/note.selector';
 
 @Component({
@@ -14,9 +15,14 @@ export class NoteListComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    // this.store.subscribe((state) => {
-    //   console.log(state);
-    // });
-    console.log(this.notes);
+    this.store.dispatch(getNotes());
+  }
+
+  deleteItem(id: string) {
+    console.log('delete', id);
+  }
+
+  openNote(id: string) {
+    console.log('open', id);
   }
 }

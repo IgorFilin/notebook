@@ -7,7 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppRoutingModule } from './app-routing.module';
 import { NotesReducer } from 'src/store/note/note.reducer';
 import { PagesModule } from './features/pages/pages.module';
-import { GetNotesEffect } from 'src/store/note/note.effects';
+import { NoteEffect } from 'src/store/note/note.effects';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthEffect } from 'src/store/auth/auth.effects';
 import { AuthReducer } from 'src/store/auth/auth.reducer';
@@ -27,7 +27,7 @@ import { UtilsService } from './core/services/utils.service';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({ notes: NotesReducer, auth: AuthReducer }),
-    EffectsModule.forRoot(GetNotesEffect, AuthEffect),
+    EffectsModule.forRoot(NoteEffect, AuthEffect),
   ],
   providers: [AuthGuar, UtilsService],
   bootstrap: [AppComponent],

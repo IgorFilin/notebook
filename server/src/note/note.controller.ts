@@ -40,4 +40,22 @@ export class NoteController {
     const result = await this.noteService.getNotes(req.cookies.authToken);
     return res.send(result);
   }
+
+  @Post("deleteNote")
+  async deleteNote(
+    @Body() body: { id: string },
+    @Req() req: Request,
+    @Res() res: Response
+  ) {
+    const result = await this.noteService.deleteNote(
+      body.id,
+      req.cookies.authToken
+    );
+    console.log(result);
+    if (result.id) {
+      return res.send(result);
+    } else {
+      return res.status(403).send(result);
+    }
+  }
 }

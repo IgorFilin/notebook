@@ -22,8 +22,7 @@ export class NoteService {
 
     if (!notes) {
       return {
-        error: "User not found",
-        message: "Invalid authentication token",
+        message: "Пользователь не найден",
       };
     }
 
@@ -35,6 +34,36 @@ export class NoteService {
         date: note.date,
       })),
     };
+  }
+
+  async deleteNote(id: string, token: string) {
+    try {
+      const { notes } = await this.UserTable.findOne({
+        where: { authToken: token },
+        relations: ["notes"],
+      });
+
+      if (!notes) {
+        return {
+          message: "Пользователь не найден",
+        };
+      }
+
+      const currentNote = notes.find((note) => note.id === id);
+      if (!currentNote) {
+        return {
+          message: "Запись не найдена",
+        };
+      }
+      await this.NoteTable.remove(currentNote);
+      return {
+        id,
+      };
+    } catch (e) {
+      return {
+        message: "Произошла ошибка, запись не удалена",
+      };
+    }
   }
 
   async createNote(body: CreateNoteDto, token: string) {

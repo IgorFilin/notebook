@@ -1,5 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
-import { getNotes, setNote, setNotes } from './note.actions';
+import {
+  complitedDeleteNote,
+  getNotes,
+  setNote,
+  setNotes,
+} from './note.actions';
 
 export interface NoteType {
   id: string;
@@ -18,5 +23,8 @@ export const NotesReducer = createReducer(
   }),
   on(setNotes, (state, { notes }) => {
     return [...notes];
+  }),
+  on(complitedDeleteNote, (state, { id }) => {
+    return state.filter((note) => note.id !== id);
   })
 );

@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getNotes } from 'src/store/note/note.actions';
+import { getNotes, startDeleteNote } from 'src/store/note/note.actions';
 import { getDataNotes } from 'src/store/note/note.selector';
 
 @Component({
@@ -19,7 +19,8 @@ export class NoteListComponent implements OnInit {
   }
 
   deleteItem(id: string) {
-    console.log('delete', id);
+    console.log(id);
+    this.store.dispatch(startDeleteNote({ id }));
   }
 
   openNote(id: string) {

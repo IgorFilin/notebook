@@ -12,3 +12,5 @@ export const complitedDeleteNote = createAction(
   '[Note] Complited Delete Note',
   (data) => data
 );
+
+export const sortAction = createAction('[Note] Sorted', (data) => data);

@@ -1,14 +1,4 @@
 <div class="ng-noteCreator">
-  <!-- <notebook-ng-input
-    (inputEmit)="onChangeTitleHandler($event)"
-  ></notebook-ng-input>
-  <notebook-ng-textarea
-    (textareaEmit)="onChangeDescriptionHandler($event)"
-  ></notebook-ng-textarea> -->
-  <!-- <notebook-ng-button
-    buttonText="Создать запись"
-    (clickEmit)="onClickCreateNoteHandler()"
-  ></notebook-ng-button> -->
   <form
     (ngSubmit)="onSubmit()"
     [formGroup]="noteCreatedForm"

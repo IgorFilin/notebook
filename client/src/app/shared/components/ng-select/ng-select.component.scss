@@ -1,0 +1,21 @@
+.ng-selectContainer {
+  position: relative;
+  display: inline-block;
+
+  .ng-select {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: 0.4s;
+  }
+
+  .ng-selectItem {
+    font-size: 9px;
+    outline: none;
+    border-color: #007bff;
+  }
+}

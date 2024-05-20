@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgTextareaComponent } from './components/ng-textarea/ng-textarea.component';
 import { NgIconComponent } from './components/ng-icon/ng-icon.component';
+import { NgSelectComponent } from './components/ng-select/ng-select.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { NgIconComponent } from './components/ng-icon/ng-icon.component';
     NgInputComponent,
     NgTextareaComponent,
     NgIconComponent,
+    NgSelectComponent,
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -19,6 +21,7 @@ import { NgIconComponent } from './components/ng-icon/ng-icon.component';
     NgInputComponent,
     NgTextareaComponent,
     NgIconComponent,
+    NgSelectComponent,
   ],
 })
 export class SharedModule {}

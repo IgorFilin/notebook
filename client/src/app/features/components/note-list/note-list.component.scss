@@ -42,3 +42,16 @@
   width: 100px;
   overflow: hidden;
 }
+
+.ng-noteList__sortContainer {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.ng-noteList__iconSorted {
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 export class UtilsService {
   errorStore(error: any) {
     if (error instanceof HttpErrorResponse) {
-      console.log(1);
       if (error.error instanceof ErrorEvent) {
         // Это ошибка сети
         return 'Network error occurred. Please check your internet connection.';

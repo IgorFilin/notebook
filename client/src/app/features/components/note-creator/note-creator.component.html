@@ -10,7 +10,7 @@
     <input
       id="title"
       formControlName="title"
-      class="ng-creator__input"
+      class="ng-creator__input title"
       type="text"
     />
     <div
@@ -25,7 +25,7 @@
     <textarea
       id="description"
       formControlName="description"
-      class="ng-creator__input"
+      class="ng-creator__input description"
     ></textarea>
     <div
       *ngIf="
@@ -35,7 +35,11 @@
     >
       Обязательное поле
     </div>
-    <button [disabled]="noteCreatedForm.invalid" type="submit">
+    <button
+      class="ng-creator__submitButton"
+      [disabled]="noteCreatedForm.invalid"
+      type="submit"
+    >
       Создать запись
     </button>
   </form>

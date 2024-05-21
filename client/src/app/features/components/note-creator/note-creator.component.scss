@@ -1,40 +1,47 @@
+@import "colors.scss";
 .ng-noteCreator {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 2rem;
-  background: #f0f8ff;
-  min-height: 100vh;
+  background: $color-white;
 }
 
 .ng-creator__confirmForm {
   width: 100%;
   max-width: 1200px;
-  font-family: "Arial", sans-serif;
 }
 
 .ng-creator__inputLabel {
   display: block;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: $color-black;
   font-weight: bold;
 }
 
 .ng-creator__input {
   width: 100%;
-  height: 500px;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccd;
+  margin-bottom: 10px;
+  border: 1px solid $color-medium-gray;
   border-radius: 4px;
   box-sizing: border-box;
-  font-size: 1.25rem;
+  font-size: 17px;
+  padding: 10px;
   resize: none;
 
   &:focus {
     border-color: #66afe9;
     outline: none;
     box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+  }
+
+  &.title {
+    height: 50px;
+  }
+
+  &.description {
+    height: 300px;
+    resize: none;
   }
 }
 
@@ -43,32 +50,22 @@
   margin-bottom: 1rem;
 }
 
-.ng-creator__input[type="text"] {
-  height: 50px;
-}
-
-.ng-creator__input[type="textarea"] {
-  height: 400px;
-  resize: none;
-}
-
-button {
-  display: block;
+.ng-creator__submitButton {
   width: 100%;
   padding: 1rem;
-  background: #007bff; /* Голубой цвет */
-  color: #fff;
+  background: $color-info-dark;
+  color: $color-white;
   border: none;
   border-radius: 4px;
-  font-size: 1.25rem;
+  font-size: 14pxrem;
   cursor: pointer;
 
   &:hover {
-    background: #0056b3;
+    background: $color-info;
   }
 
   &:disabled {
-    background: #ccc;
+    background: $color-disabled;
     cursor: not-allowed;
   }
 }

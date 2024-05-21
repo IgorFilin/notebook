@@ -1,0 +1,50 @@
+@import "colors.scss";
+
+.ng-noteContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ng-note {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: $color-light-gray;
+  padding: 20px;
+  gap: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba($color-info-light, 0.5);
+}
+
+.ng-note__title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.ng-note__date {
+  font-size: 14px;
+  color: #555;
+  margin-top: 30px;
+}
+
+.ng-note__description {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 16px;
+  word-break: break-all;
+  overflow-y: scroll;
+  max-height: 300px;
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: $color-info;
+    min-height: 24px;
+    border: 3px solid $color-light-gray;
+  }
+
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
+}

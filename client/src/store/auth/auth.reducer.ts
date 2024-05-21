@@ -29,19 +29,15 @@ export const AuthReducer = createReducer(
     };
   }),
   on(stopLoading, (state) => {
-    console.log(state);
     return {
       ...state,
       isLoading: false,
     };
   }),
-  on(
-    completedRegistrationAction,
-    (state, data: ResponseDataRegistrationType) => ({
-      ...state,
-      isAuth: true,
-    })
-  ),
+  on(completedRegistrationAction, (state) => ({
+    ...state,
+    isAuth: true,
+  })),
   on(completedExit, (state, data: any) => ({
     ...state,
     isAuth: data.isAuth,

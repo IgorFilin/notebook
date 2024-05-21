@@ -1,4 +1,8 @@
 <div class="ng-main">
   <notebook-note-list></notebook-note-list>
-  <notebook-note-creator></notebook-note-creator>
+  <notebook-note-creator *ngIf="!currentNote"></notebook-note-creator>
+  <notebook-note
+    *ngIf="currentNote"
+    [currentNote]="currentNote"
+  ></notebook-note>
 </div>

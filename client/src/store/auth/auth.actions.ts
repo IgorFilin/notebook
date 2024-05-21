@@ -22,7 +22,6 @@ export const completedLogin = createAction(
 export const completedRegistrationAction = createAction(
   '[Auth] Completed Registration',
   (data: ResponseDataRegistrationType) => {
-    console.log(data);
     return data;
   }
 );

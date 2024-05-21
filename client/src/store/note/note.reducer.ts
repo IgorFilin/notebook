@@ -1,5 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import {
+  clearCurrentIdNote,
   complitedDeleteNote,
   setIdCurrentNote,
   setNote,
@@ -50,6 +51,13 @@ export const NotesReducer = createReducer(
       notes: state.notes.filter((note) => note.id !== id),
     };
   }),
+  on(clearCurrentIdNote, (state) => {
+    return {
+      ...state,
+      currentNote: null,
+    };
+  }),
+
   on(sortAction, (state, data) => {
     // Функция сортировки для поля date
     const sortByDate = (a: any, b: any) => {

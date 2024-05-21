@@ -11,7 +11,6 @@ export class AuthGuar {
   canActivate(): Observable<boolean> {
     return this.store.select(getIsAuth).pipe(
       take(1), // Берем только одно значение из потока
-      tap((isAuth) => console.log(isAuth)),
       map((isAuth) => {
         if (isAuth) {
           return true;

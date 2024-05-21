@@ -1,1 +1,13 @@
-<p>note works!</p>
+<div class="ng-noteContainer">
+  <div class="ng-note" *ngIf="currentNote">
+    <div class="ng-note__title">{{ currentNote.title }}</div>
+    <div class="ng-note__description">{{ currentNote.description }}</div>
+    <div class="ng-note__date">
+      {{ currentNote.date | date : "dd/MM/yyyy" }}
+    </div>
+  </div>
+  <notebook-ng-button
+    [buttonText]="'К созданию новой записи'"
+    (clickEmit)="onMoveToCreatedNote()"
+  ></notebook-ng-button>
+</div>

@@ -2,10 +2,21 @@
 
 .ng-noteList {
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   position: relative;
-  max-height: 1000px;
+  max-height: 515px;
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: $color-info;
+    min-height: 24px;
+    border: 3px solid $color-white;
+  }
+
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
 }
 
 .ng-noteList__elem {
@@ -48,6 +59,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  margin-bottom: 10px;
 }
 
 .ng-noteList__iconSorted {

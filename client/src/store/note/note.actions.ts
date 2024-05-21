@@ -8,6 +8,7 @@ export const startDeleteNote = createAction(
   '[Note] Start Delete Note',
   (data) => data
 );
+
 export const complitedDeleteNote = createAction(
   '[Note] Complited Delete Note',
   (data) => data
@@ -18,3 +19,4 @@ export const setIdCurrentNote = createAction(
   '[Note] Set Id Current Note',
   (data) => data
 );
+export const clearCurrentIdNote = createAction('[Note] Crear Current Id Note');

@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import {
   complitedDeleteNote,
-  getNotes,
+  setIdCurrentNote,
   setNote,
   setNotes,
   sortAction,
@@ -14,18 +14,41 @@ export interface NoteType {
   date: string;
 }
 
-const notes: Array<NoteType> = [];
+export interface NoteState {
+  currentNote: string | null;
+  notes: Array<NoteType>;
+}
+
+const notes: NoteState = {
+  currentNote: null,
+  notes: [],
+};
 
 export const NotesReducer = createReducer(
   notes,
   on(setNote, (state, { note }) => {
-    return [...state, note];
+    return {
+      ...state,
+      notes: [...state.notes, note],
+    };
   }),
   on(setNotes, (state, { notes }) => {
-    return [...notes];
+    return {
+      ...state,
+      notes,
+    };
+  }),
+  on(setIdCurrentNote, (state, { id }) => {
+    return {
+      ...state,
+      currentNote: id,
+    };
   }),
   on(complitedDeleteNote, (state, { id }) => {
-    return state.filter((note) => note.id !== id);
+    return {
+      ...state,
+      notes: state.notes.filter((note) => note.id !== id),
+    };
   }),
   on(sortAction, (state, data) => {
     // Функция сортировки для поля date
@@ -45,6 +68,9 @@ export const NotesReducer = createReducer(
     const sortFunction = data.select === 'date' ? sortByDate : sortByTitle;
 
     // Применение направления сортировки
-    return [...state].sort(sortFunction);
+    return {
+      ...state,
+      notes: [...state.notes].sort(sortFunction),
+    };
   })
 );

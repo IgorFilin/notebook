@@ -10,7 +10,7 @@ export class NgSelectComponent implements OnInit {
   @Output() selectedOption = new EventEmitter<any>();
 
   ngOnInit() {
-    console.log(this.options[0].value);
+    console.log('select');
     this.selectedOption.emit(this.options[0].value);
   }
 

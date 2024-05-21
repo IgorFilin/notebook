@@ -16,9 +16,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './features/components/header/header.component';
 import { AuthGuar } from './core/services/auth.guard';
 import { UtilsService } from './core/services/utils.service';
+import { NoteComponent } from './features/components/note/note.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, NoteComponent],
   imports: [
     ToastrModule.forRoot(),
     BrowserAnimationsModule,

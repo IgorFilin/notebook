@@ -1,10 +1,9 @@
-import { createSelector } from '@ngrx/store';
-import { NoteType } from './note.reducer';
+import { NoteState, NoteType } from './note.reducer';
 
 interface AppStore {
-  notes: Array<NoteType>;
+  notes: NoteState;
 }
 
 export const getDataNotes = (state: AppStore) => {
-  return state.notes;
+  return state.notes.notes;
 };

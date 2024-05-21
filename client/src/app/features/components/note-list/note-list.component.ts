@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {
   getNotes,
+  setIdCurrentNote,
   sortAction,
   startDeleteNote,
 } from 'src/store/note/note.actions';
@@ -48,7 +49,7 @@ export class NoteListComponent implements AfterViewInit {
   }
 
   openNote(id: string) {
-    console.log('open', id);
+    this.store.dispatch(setIdCurrentNote({ id }));
   }
 
   onSelected(value: any) {

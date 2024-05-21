@@ -14,3 +14,7 @@ export const complitedDeleteNote = createAction(
 );
 
 export const sortAction = createAction('[Note] Sorted', (data) => data);
+export const setIdCurrentNote = createAction(
+  '[Note] Set Id Current Note',
+  (data) => data
+);

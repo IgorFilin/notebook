@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, exhaustMap, map, of, tap } from 'rxjs';
+import { catchError, concatMap, exhaustMap, map, of, tap } from 'rxjs';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
   complitedDeleteNote,
@@ -7,6 +7,7 @@ import {
   getNotes,
   setNote,
   setNotes,
+  sortAction,
   startDeleteNote,
 } from './note.actions';
 import { HttpClient } from '@angular/common/http';
@@ -21,11 +22,11 @@ export class NoteEffect {
       ofType(getNotes),
       exhaustMap(() => {
         return this.http.get(`${environment.apiBaseUrl}/note/getNotes`).pipe(
-          map((data: any) => {
-            return setNotes(data);
+          concatMap((data: any) => {
+            return [setNotes(data), sortAction({ des: false, select: 'data' })];
           }),
           catchError((error) => {
-            return 'error';
+            return of('error');
           })
         );
       })
@@ -50,7 +51,7 @@ export class NoteEffect {
               return setNote(data);
             }),
             catchError((error) => {
-              return 'error';
+              return of('error');
             })
           );
       })
@@ -74,7 +75,7 @@ export class NoteEffect {
               return complitedDeleteNote(data);
             }),
             catchError((error) => {
-              return 'error';
+              return of('error');
             })
           );
       })

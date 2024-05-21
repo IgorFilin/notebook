@@ -6,7 +6,7 @@ import {
   inject,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, take } from 'rxjs';
 import {
   getNotes,
   setIdCurrentNote,
@@ -39,9 +39,13 @@ export class NoteListComponent implements AfterViewInit {
   }
 
   watchIsDesorted(isDesSorted: boolean) {
-    this.store.dispatch(
-      sortAction({ des: isDesSorted, select: this.selectCortedValue })
-    );
+    this.notes.pipe(take(1)).subscribe((data) => {
+      if (data.length) {
+        this.store.dispatch(
+          sortAction({ des: isDesSorted, select: this.selectCortedValue })
+        );
+      }
+    });
   }
 
   deleteItem(id: string) {

@@ -41,6 +41,6 @@ export class UsersModule implements OnModuleInit {
   constructor(private readonly userService: UsersService) {}
 
   async onModuleInit() {
-    this.userService.createTestUser();
+    await this.userService.createTestUser();
   }
 }

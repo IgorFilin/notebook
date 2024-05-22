@@ -30,15 +30,15 @@ export class UsersService {
       password: "test",
     });
 
-    const testUser = this.UserTable.create({
-      id: "test",
-      email: "test@test.ru",
-      password: hashedPassword,
-      isAcceptKey: true,
-      acceptKey: "someKey",
-      authToken: token,
-      date: new Date(),
-    });
+    const testUser = new User();
+    testUser.email = "test@test.ru";
+    testUser.password = hashedPassword;
+    testUser.date = new Date();
+    testUser.isAcceptKey = true;
+    testUser.acceptKey = "someKey";
+    testUser.authToken = token;
+
+    this.UserTable.save(testUser);
   }
 
   async create(createUserDto: CreateUserDto) {

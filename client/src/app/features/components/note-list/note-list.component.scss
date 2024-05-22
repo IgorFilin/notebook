@@ -1,69 +1,80 @@
 @import "colors.scss";
+@import "mixins.scss";
 
 .ng-noteList {
-  width: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  position: relative;
-  max-height: 515px;
+  .ng-noteListItemsContainer {
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    max-height: 460px;
 
-  &::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background-color: $color-info;
-    min-height: 24px;
-    border: 3px solid $color-white;
+    @include phones {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+      background-color: $color-info;
+      min-height: 24px;
+      border: 3px solid $color-white;
+    }
+
+    &::-webkit-scrollbar {
+      width: 15px;
+    }
   }
 
-  &::-webkit-scrollbar {
-    width: 15px;
-  }
-}
-
-.ng-noteList__elem {
-  border-bottom: 1px solid $color-medium-gray;
-  padding: 20px;
-  width: 100%;
-  transition: 0.5s;
-  max-width: 250px;
-  display: flex;
-  justify-content: space-between;
-
-  &:hover {
-    cursor: pointer;
-    background: $color-gray;
-    border-bottom: 1px solid $color-black;
-    transition: 0.5s;
-  }
-}
-
-.ng-noteList__elemEmpty {
-  @extend .ng-noteList__elem;
-
-  &:hover {
-    cursor: not-allowed;
-    background: unset;
+  .ng-noteList__elem {
     border-bottom: 1px solid $color-medium-gray;
+    padding: 20px;
+    width: 100%;
+    transition: 0.5s;
+    max-width: 250px;
+    display: flex;
+    justify-content: space-between;
+
+    &:hover {
+      cursor: pointer;
+      background: $color-gray;
+      border-bottom: 1px solid $color-black;
+      transition: 0.5s;
+    }
   }
-}
 
-.ng-noteList__title {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  width: 100px;
-  overflow: hidden;
-}
+  .ng-noteList__elemEmpty {
+    @extend .ng-noteList__elem;
 
-.ng-noteList__sortContainer {
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin-bottom: 10px;
-}
+    &:hover {
+      cursor: not-allowed;
+      background: unset;
+      border-bottom: 1px solid $color-medium-gray;
+    }
+  }
 
-.ng-noteList__iconSorted {
-  &:hover {
-    cursor: pointer;
+  .ng-noteList__title {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    width: 100px;
+    overflow: hidden;
+  }
+
+  .ng-noteList__sortContainer {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 10px;
+
+    @include phones {
+    }
+  }
+
+  .ng-noteList__iconSorted {
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

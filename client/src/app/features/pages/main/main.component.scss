@@ -1,5 +1,12 @@
+@import "mixins.scss";
+
 .ng-main {
   display: grid;
   grid-template-columns: minmax(0, 300px) 1fr;
   gap: 20px;
+
+  @include phones {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
 }

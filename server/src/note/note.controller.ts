@@ -51,7 +51,6 @@ export class NoteController {
       body.id,
       req.cookies.authToken
     );
-    console.log(result);
     if (result.id) {
       return res.send(result);
     } else {

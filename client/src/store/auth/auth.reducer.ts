@@ -5,10 +5,8 @@ import {
   completedRegistrationAction,
   registrationFailure,
   startLoading,
-  startRegistrationAction,
   stopLoading,
 } from './auth.actions';
-import { ResponseDataRegistrationType } from './types';
 
 export interface AuthType {
   isAuth: boolean;

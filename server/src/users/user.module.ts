@@ -1,14 +1,18 @@
-import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
-import { UsersService } from './user.service';
-import { UsersController } from './user.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './entities/user.entity';
-import { JwtModule } from '@nestjs/jwt';
-import { EmailService } from 'src/email/email.service';
-import { MemoryStoredFile, NestjsFormDataModule } from 'nestjs-form-data';
-import { UserSubscriber } from 'src/dataBaseChangeObserver/database-change.service';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-
+import {
+  Module,
+  NestModule,
+  MiddlewareConsumer,
+  OnModuleInit,
+} from "@nestjs/common";
+import { UsersService } from "./user.service";
+import { UsersController } from "./user.controller";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { User } from "./entities/user.entity";
+import { JwtModule } from "@nestjs/jwt";
+import { EmailService } from "src/email/email.service";
+import { MemoryStoredFile, NestjsFormDataModule } from "nestjs-form-data";
+import { UserSubscriber } from "src/dataBaseChangeObserver/database-change.service";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 
 @Module({
   imports: [
@@ -18,7 +22,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       useFactory: async (configService: ConfigService) => ({
         secret: process.env.SECRET_REGISTER_KEY,
         signOptions: {
-          expiresIn: '1h', // Время жизни токена
+          expiresIn: "1h", // Время жизни токена
         },
       }),
       inject: [ConfigService],
@@ -31,10 +35,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     }),
   ],
   controllers: [UsersController],
-  providers: [
-    UsersService,
-    EmailService,
-    UserSubscriber,
-  ],
+  providers: [UsersService, EmailService, UserSubscriber],
 })
-export class UsersModule {}
+export class UsersModule implements OnModuleInit {
+  constructor(private readonly userService: UsersService) {}
+
+  async onModuleInit() {
+    this.userService.createTestUser();
+  }
+}

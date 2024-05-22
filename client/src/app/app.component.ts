@@ -9,7 +9,6 @@ import { authAction } from 'src/store/auth/auth.actions';
 export class AppComponent implements OnInit {
   store = inject(Store);
   title = 'notebook';
-  constructor() {}
 
   ngOnInit() {
     this.store.dispatch(authAction());

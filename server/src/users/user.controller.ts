@@ -6,15 +6,12 @@ import {
   UsePipes,
   Res,
   Req,
-  Ip,
 } from "@nestjs/common";
 import { UsersService } from "./user.service";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { LoginUserDto } from "./dto/login-user.dto";
 import { ValidationPipe } from "@nestjs/common";
 import { Response, Request } from "express";
-import { FormDataRequest, MemoryStoredFile } from "nestjs-form-data";
-import * as https from "https";
 
 @Controller("user")
 export class UsersController {
@@ -22,12 +19,7 @@ export class UsersController {
 
   @Post("registration")
   @UsePipes(new ValidationPipe())
-  async create(
-    @Body() createUserDto: CreateUserDto,
-    @Res() res: Response,
-    @Ip() ip: string
-  ) {
-    console.log(createUserDto);
+  async create(@Body() createUserDto: CreateUserDto, @Res() res: Response) {
     const result = await this.usersService.create(createUserDto);
     if (result.isAcceptKey === false) {
       return res.send(result);

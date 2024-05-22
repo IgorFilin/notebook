@@ -59,14 +59,11 @@ export const NotesReducer = createReducer(
   }),
 
   on(sortAction, (state, data) => {
-    console.log('сортировка', data);
     // Функция сортировки для поля date
     const sortByDate = (a: any, b: any) => {
       if (data.des) {
-        console.log(1);
         return new Date(a.date).getTime() - new Date(b.date).getTime();
       } else {
-        console.log(2);
         return new Date(b.date).getTime() - new Date(a.date).getTime();
       }
     };
@@ -79,7 +76,6 @@ export const NotesReducer = createReducer(
 
     // Выбор функции сортировки в зависимости от выбранного поля
     const sortFunction = data.select === 'date' ? sortByDate : sortByTitle;
-    console.log(sortFunction);
     // Применение направления сортировки
     return {
       ...state,

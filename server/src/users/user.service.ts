@@ -27,7 +27,7 @@ export class UsersService {
     const hashedPassword = await bcrypt.hash("test", salt);
     const token = this.JwtService.sign({
       name: "test",
-      password: "test",
+      password: "testtest",
     });
 
     const testUser = new User();

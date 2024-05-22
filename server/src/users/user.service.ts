@@ -23,22 +23,27 @@ export class UsersService {
   blockedKeysSendingMails = {};
 
   async createTestUser() {
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash("test", salt);
-    const token = this.JwtService.sign({
-      name: "test",
-      password: "testtest",
+    const findedTestUser = await this.UserTable.findOneBy({
+      email: "test@test.ru",
     });
+    if (!findedTestUser) {
+      const salt = await bcrypt.genSalt();
+      const hashedPassword = await bcrypt.hash("testtest", salt);
+      const token = this.JwtService.sign({
+        name: "test",
+        password: "testtest",
+      });
 
-    const testUser = new User();
-    testUser.email = "test@test.ru";
-    testUser.password = hashedPassword;
-    testUser.date = new Date();
-    testUser.isAcceptKey = true;
-    testUser.acceptKey = "someKey";
-    testUser.authToken = token;
+      const testUser = new User();
+      testUser.email = "test@test.ru";
+      testUser.password = hashedPassword;
+      testUser.date = new Date();
+      testUser.isAcceptKey = true;
+      testUser.acceptKey = "someKey";
+      testUser.authToken = token;
 
-    this.UserTable.save(testUser);
+      this.UserTable.save(testUser);
+    }
   }
 
   async create(createUserDto: CreateUserDto) {

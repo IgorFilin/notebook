@@ -2,14 +2,16 @@ import {
   AfterViewInit,
   Component,
   DoCheck,
+  OnDestroy,
   OnInit,
   inject,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, Observable, take } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, take } from 'rxjs';
 import {
   getNotes,
   setIdCurrentNote,
+  setNotes,
   sortAction,
   startDeleteNote,
 } from 'src/store/note/note.actions';
@@ -20,9 +22,10 @@ import { getDataNotes } from 'src/store/note/note.selector';
   templateUrl: './note-list.component.html',
   styleUrls: ['./note-list.component.scss'],
 })
-export class NoteListComponent implements AfterViewInit {
+export class NoteListComponent implements AfterViewInit, OnInit, OnDestroy {
   store = inject(Store);
-  notes: Observable<any> = this.store.select(getDataNotes);
+  notes: any = [];
+  storeSub: Subscription | undefined;
   isDesSorted: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   selectCortedValue: string = '';
 
@@ -31,6 +34,17 @@ export class NoteListComponent implements AfterViewInit {
     { label: 'По имени', value: 'title' },
   ];
 
+  ngOnInit() {
+    this.storeSub = this.store.select(getDataNotes).subscribe((data) => {
+      if (data) {
+        localStorage.setItem('notes', JSON.stringify(data));
+        this.notes = data;
+      }
+    });
+
+    window.addEventListener('storage', this.handleStorageChange.bind(this));
+  }
+
   ngAfterViewInit(): void {
     this.store.dispatch(getNotes());
     this.isDesSorted.subscribe((isDesSorted) => {
@@ -38,14 +52,31 @@ export class NoteListComponent implements AfterViewInit {
     });
   }
 
+  ngOnDestroy() {
+    if (this.storeSub) {
+      this.storeSub.unsubscribe();
+    }
+    window.removeEventListener('storage', this.handleStorageChange);
+  }
+
+  handleStorageChange(event: StorageEvent) {
+    const dataNotesStorage = JSON.parse(localStorage.getItem('notes')!);
+    if (event.key === 'notes' && dataNotesStorage) {
+      this.store.dispatch(setNotes({ notes: dataNotesStorage }));
+    }
+  }
+
   watchIsDesorted(isDesSorted: boolean) {
-    this.notes.pipe(take(1)).subscribe((data) => {
-      if (data.length) {
-        this.store.dispatch(
-          sortAction({ des: isDesSorted, select: this.selectCortedValue })
-        );
-      }
-    });
+    this.store
+      .select(getDataNotes)
+      .pipe(take(1))
+      .subscribe((data) => {
+        if (data.length) {
+          this.store.dispatch(
+            sortAction({ des: isDesSorted, select: this.selectCortedValue })
+          );
+        }
+      });
   }
 
   deleteItem(id: string) {

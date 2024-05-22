@@ -13,7 +13,7 @@
   <div class="ng-noteListItemsContainer">
     <div
       class="ng-noteList__elem"
-      *ngFor="let item of notes | async"
+      *ngFor="let item of notes"
       (click)="openNote(item.id)"
     >
       <div class="ng-noteList__title">{{ item.title }}</div>
@@ -23,7 +23,7 @@
         (click)="deleteItem(item.id); $event.stopPropagation()"
       ></notebook-ng-icon>
     </div>
-    <div class="ng-noteList__elemEmpty" *ngIf="!(notes | async).length">
+    <div class="ng-noteList__elemEmpty" *ngIf="!notes.length">
       Список заметок пуст
     </div>
   </div>

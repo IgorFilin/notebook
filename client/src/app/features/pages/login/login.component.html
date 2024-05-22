@@ -28,6 +28,6 @@
       <div *ngIf="email!.errors?.['required']">Обязательное поле</div>
       <div *ngIf="password!.errors?.['minlength']">Пароль менее 6 символов</div>
     </div>
-    <button [disabled]="loginForm.invalid" type="submit">Регистрация</button>
+    <button [disabled]="loginForm.invalid" type="submit">Вход</button>
   </form>
 </div>

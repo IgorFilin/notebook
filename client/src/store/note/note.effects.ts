@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, concatMap, exhaustMap, map, of, tap } from 'rxjs';
+import { catchError, concatMap, exhaustMap, map, of } from 'rxjs';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
   complitedDeleteNote,
@@ -21,14 +21,21 @@ export class NoteEffect {
     this.actions$.pipe(
       ofType(getNotes),
       exhaustMap(() => {
-        return this.http.get(`${environment.apiBaseUrl}/note/getNotes`).pipe(
-          concatMap((data: any) => {
-            return [setNotes(data), sortAction({ des: false, select: 'data' })];
-          }),
-          catchError((error) => {
-            return of('error');
+        return this.http
+          .get(`${environment.apiBaseUrl}/note/getNotes`, {
+            withCredentials: true,
           })
-        );
+          .pipe(
+            concatMap((data: any) => {
+              return [
+                setNotes(data),
+                sortAction({ des: false, select: 'date' }),
+              ];
+            }),
+            catchError((error) => {
+              return of('error');
+            })
+          );
       })
     )
   );

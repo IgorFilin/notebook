@@ -64,7 +64,6 @@ export class UsersController {
   @Get("confirm")
   async confirm(@Req() req: Request, @Res() res: Response) {
     const key: any = req.query.key;
-    const mail: any = !!req.query.mail;
     const result = await this.usersService.confirmRegistration(key);
     if (result.isAcceptKey) {
       const expirationDate = new Date();
@@ -73,9 +72,6 @@ export class UsersController {
         httpOnly: true,
         expires: expirationDate,
       });
-      if (mail) {
-        return res.redirect("http://filin-hub.online/");
-      }
       res.send({ isAcceptKey: result.isAcceptKey, message: result.message });
     } else {
       res.status(403).send({ message: result.message });

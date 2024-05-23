@@ -55,7 +55,7 @@ export class AuthEffect {
               );
             }),
             catchError((error) => {
-              const errorMessage = error.error.message[0];
+              const errorMessage = error.error.message;
               this.toastr.error(errorMessage);
               this.store.dispatch(stopLoading());
               return of(registrationFailure({ error }));
@@ -86,7 +86,7 @@ export class AuthEffect {
               );
             }),
             catchError((error) => {
-              const errorMessage = error.error.message[0];
+              const errorMessage = error.error.message;
               this.toastr.error(errorMessage);
               this.store.dispatch(stopLoading());
               return of(registrationFailure({ error }));
@@ -115,7 +115,6 @@ export class AuthEffect {
               );
             }),
             catchError((error) => {
-              // const errorMessage = this.utils.errorStore(error);
               this.store.dispatch(stopLoading());
               return of(registrationFailure({ error }));
             })
@@ -141,7 +140,7 @@ export class AuthEffect {
               return completedExit(data);
             }),
             catchError((error) => {
-              const errorMessage = error.error.message[0];
+              const errorMessage = error.error.message;
               this.toastr.error(errorMessage);
               this.store.dispatch(stopLoading());
               return of(registrationFailure({ error }));
@@ -174,7 +173,7 @@ export class AuthEffect {
               return completedLogin(data);
             }),
             catchError((error) => {
-              const errorMessage = error.error.message[0];
+              const errorMessage = error.error.message;
               this.toastr.error(errorMessage);
               this.store.dispatch(stopLoading());
               return of(registrationFailure({ error }));

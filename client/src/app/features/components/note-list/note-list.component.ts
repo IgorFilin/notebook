@@ -80,6 +80,7 @@ export class NoteListComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   deleteItem(id: string) {
+    console.log('=+=', id);
     this.store.dispatch(startDeleteNote({ id }));
   }
 

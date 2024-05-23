@@ -79,7 +79,7 @@ export class AuthEffect {
           .pipe(
             map((data) => {
               this.store.dispatch(stopLoading());
-              this.toastr.success('Доброе пожаловать');
+              this.toastr.success('Добро пожаловать');
               this.router.navigate(['/']);
               return completedRegistrationAction(
                 data as ResponseDataRegistrationType
